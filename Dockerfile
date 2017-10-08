@@ -1,9 +1,11 @@
 FROM docker.elastic.co/logstash/logstash:5.6.2
 USER 0:0
 
-RUN yum update -y && yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel ruby-devel libxml2 libxml2-devel libxslt libxslt-devel git
+RUN yum update -y && yum install -y gpg2 gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel ruby-devel libxml2 libxml2-devel libxslt libxslt-devel git
 
 # Install Ruby from rvm
+RUN command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+
 RUN curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 #Enable rvm in current shell
