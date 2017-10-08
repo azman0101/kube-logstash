@@ -13,7 +13,7 @@ RUN source /usr/local/rvm/scripts/rvm
 
 #Install Bundler
 RUN gem install bundler
-RUN git clone https://github.com/Oxalide-Team-2/logstash-input-gelf.git
+
 RUN git clone https://github.com/Oxalide-Team-2/logstash-input-gelf.git && cd logstash-input-gelf
 RUN gem build logstash-input-gelf.gemspec && export PLUGIN=$(pwd) && ls -l
 RUN cd /usr/share/logstash && logstash-plugin install $PLUGIN/logstash-input-gelf-3.0.6.gem
